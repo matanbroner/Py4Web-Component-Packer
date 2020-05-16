@@ -43,8 +43,8 @@ def _generate_args():
     # ex. py4web-component.py unpack -d apps/myapp -f foo.zip
     parser_unpack = method_parser.add_parser(UNPACK)
     work_dir_arg(parser_unpack)
-    force_arg(parser_unpack)
     zip_arg(parser_unpack)
+    force_arg(parser_unpack)
 
 
 def _attempt_args_completion(args, unknown):
