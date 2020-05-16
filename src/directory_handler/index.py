@@ -6,6 +6,7 @@ Overarching handler for the module, parses command line args and enacts correct 
 
 
 from ..assets.methods import base_file_name, join_paths, path_exists, terminate
+from ..assets.constants import PACK, UNPACK
 from ..config import files, replace_char
 from .pack import Pack
 from .unpack import Unpack
@@ -28,8 +29,8 @@ class DirectoryHandler:
             config {dict} -- configuration keys (includes command line args)
         """
         self.handlers = {
-            'pack': self._pack,
-            'unpack': self._unpack
+            PACK: self._pack,
+            UNPACK: self._unpack
         }
         for key in config:
             setattr(self, key, config[key])
