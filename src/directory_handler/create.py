@@ -29,7 +29,7 @@ class Create:
         """Generates new component tree
 
         Arguments:
-            file_paths {list} -- list of files to decompress
+            file_paths {list} -- list of files to create
         """
         for path in file_paths:
             if path_exists(path) and not self.force:
