@@ -46,7 +46,7 @@ def _generate_args():
     zip_arg(parser_unpack)
     force_arg(parser_unpack)
 
-    # ex. py4web-component.py create foo apps/myapp
+    # ex. py4web-component.py create foo apps/myapp -f
     parser_create = method_parser.add_parser(CREATE)
     comp_arg(parser_create)
     work_dir_arg(parser_create)
@@ -63,6 +63,10 @@ def _attempt_args_completion(args, unknown):
     for key in args:
         if args[key] is None and len(unknown):
             args[key] = unknown.pop(0)
+
+    if len(unknown):
+        terminate(
+            "argument '{}' was not recognized, use -h for help".format(unknown.pop(0)))
 
 
 def _validate_args(args):
