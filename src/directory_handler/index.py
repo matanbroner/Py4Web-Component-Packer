@@ -64,19 +64,17 @@ class DirectoryHandler:
         """ Generates a series of file names according to config and component name
         """
         file_names = []
-        use_file = self.base_file
         for file_name in files:
-            file_names.append(file_name.replace(replace_char, use_file))
+            file_names.append(file_name.replace(replace_char, self.base_file))
         self.file_names = file_names
 
     def _generate_file_paths(self):
         """ Generates necessary file paths associated with component name
         """
-        use_file = self.base_file
         file_paths = []
         for name in self.file_names:
             file_paths.append(join_paths(
-                [self.work_dir, use_file, name]))
+                [self.work_dir, self.base_file, name]))
         self.file_paths = file_paths
 
     def _validate_file_paths(self):
