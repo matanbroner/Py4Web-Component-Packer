@@ -57,19 +57,19 @@ class DirectoryHandler:
         """ Generates a series of file names according to config and component name
         """
         file_names = []
+        use_file = self._use_file_name()
         for file_name in files:
-            file_names.append(file_name.replace(replace_char, self.base_file))
+            file_names.append(file_name.replace(replace_char, use_file))
         self.file_names = file_names
 
     def _generate_file_paths(self):
         """ Generates necessary file paths associated with component name
         """
-        component = self.component if self.method is 'pack' else base_file_name(
-            self.zip)
+        use_file = self._use_file_name()
         file_paths = []
         for name in self.file_names:
             file_paths.append(join_paths(
-                [self.work_dir, component, name]))
+                [self.work_dir, use_file, name]))
         self.file_paths = file_paths
 
     def _validate_file_paths(self):
@@ -79,3 +79,11 @@ class DirectoryHandler:
             if not path_exists(path):
                 terminate(
                     "expected file at {} but could not find or read".format(path))
+
+    def _use_file_name(self):
+        """Detemines whether to use base zip file name or component name based on method
+
+        Returns:
+            str -- file name
+        """
+        return self.component if self.method == PACK else self.base_file

@@ -42,4 +42,7 @@ class Unpack:
     def _unzip_files(self):
         """ Decompresses the provided compression file
         """
+        if not path_exists(self.zip):
+            terminate(
+                "zip file {} was not found or able to be read".format(self.zip))
         unzip_dir(self.zip, self.work_dir, folder=base_file_name(self.zip))
