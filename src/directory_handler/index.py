@@ -91,6 +91,6 @@ class DirectoryHandler:
         """ Determines base file name to use according to method enacted
         """
         if self.method in [PACK, CREATE]:
-            self.base_file = self.component  # ie. no zip, use component name for files
+            self.base_file = self.component  # ie. use component name for file path creation
         else:
             self.base_file = base_file_name(self.zip)
