@@ -10,7 +10,7 @@ from ..assets.methods import terminate
 from ..assets.constants import PACK, UNPACK, CREATE
 
 parser = argparse.ArgumentParser(
-    description='Pack or unpack a given app directory')
+    description='Argument handler for component directory structure')
 method_parser = parser.add_subparsers(dest='method')
 
 
