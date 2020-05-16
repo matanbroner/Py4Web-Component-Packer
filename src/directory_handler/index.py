@@ -55,7 +55,7 @@ class DirectoryHandler:
         Unpack(config).activate(self.file_paths)
 
     def _create(self):
-        """ Create new component tree
+        """ Create functionality wrapper
         """
         config = self.config.copy()
         Create(config).activate(self.file_paths)
