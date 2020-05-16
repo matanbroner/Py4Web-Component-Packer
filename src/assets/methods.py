@@ -83,6 +83,17 @@ def copy_file(src, dest):
     shutil.copyfile(src, dest)
 
 
+def create_file(src):
+    """ Creates an empty file at the given file path
+
+    Arguments:
+        src {str} -- complete file path
+    """
+    os.makedirs(os.path.dirname(src), exist_ok=True)
+    with open(src, 'w') as fp:
+        pass  # creates empty file
+
+
 def zip_dir(src, name, ext='zip'):
     """ Zips a directory to a given name
 

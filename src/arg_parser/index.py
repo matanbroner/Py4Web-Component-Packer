@@ -7,7 +7,7 @@ Handles command line arguments
 import argparse
 from .args import *
 from ..assets.methods import terminate
-from ..assets.constants import PACK, UNPACK
+from ..assets.constants import PACK, UNPACK, CREATE
 
 parser = argparse.ArgumentParser(
     description='Pack or unpack a given app directory')
@@ -45,6 +45,12 @@ def _generate_args():
     work_dir_arg(parser_unpack)
     zip_arg(parser_unpack)
     force_arg(parser_unpack)
+
+    # ex. py4web-component.py create foo apps/myapp
+    parser_create = method_parser.add_parser(CREATE)
+    comp_arg(parser_create)
+    work_dir_arg(parser_create)
+    force_arg(parser_create)
 
 
 def _attempt_args_completion(args, unknown):

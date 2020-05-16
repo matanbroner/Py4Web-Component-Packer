@@ -4,7 +4,7 @@
 """
 
 
-""" Files that will be packed and unpacked, $ represents a dynamic file name
+""" Files that will be packed and unpacked, * represents a dynamic file name
 """
 replace_char = '*'
 

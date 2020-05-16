@@ -6,10 +6,11 @@ Overarching handler for the module, parses command line args and enacts correct 
 
 
 from ..assets.methods import base_file_name, join_paths, path_exists, terminate
-from ..assets.constants import PACK, UNPACK
+from ..assets.constants import PACK, UNPACK, CREATE
 from ..config import files, replace_char
 from .pack import Pack
 from .unpack import Unpack
+from .create import Create
 
 
 class DirectoryHandler:
@@ -30,11 +31,12 @@ class DirectoryHandler:
         """
         self.handlers = {
             PACK: self._pack,
-            UNPACK: self._unpack
+            UNPACK: self._unpack,
+            CREATE: self._create
         }
         for key in config:
             setattr(self, key, config[key])
-        self.base_file = base_file_name(self.zip)
+        self._define_base_file()
         self._generate_read_files()
         self._generate_file_paths()
 
@@ -50,14 +52,19 @@ class DirectoryHandler:
         """ Unpack functionality wrapper
         """
         config = self.config.copy()
-        config['file_names'] = self.file_names
         Unpack(config).activate(self.file_paths)
+
+    def _create(self):
+        """ Create new component tree
+        """
+        config = self.config.copy()
+        Create(config).activate(self.file_paths)
 
     def _generate_read_files(self):
         """ Generates a series of file names according to config and component name
         """
         file_names = []
-        use_file = self._use_file_name()
+        use_file = self.base_file
         for file_name in files:
             file_names.append(file_name.replace(replace_char, use_file))
         self.file_names = file_names
@@ -65,7 +72,7 @@ class DirectoryHandler:
     def _generate_file_paths(self):
         """ Generates necessary file paths associated with component name
         """
-        use_file = self._use_file_name()
+        use_file = self.base_file
         file_paths = []
         for name in self.file_names:
             file_paths.append(join_paths(
@@ -80,10 +87,10 @@ class DirectoryHandler:
                 terminate(
                     "expected file at {} but could not find or read".format(path))
 
-    def _use_file_name(self):
-        """Detemines whether to use base zip file name or component name based on method
-
-        Returns:
-            str -- file name
+    def _define_base_file(self):
+        """ Determines base file name to use according to method enacted
         """
-        return self.component if self.method == PACK else self.base_file
+        if self.method in [PACK, CREATE]:
+            self.base_file = self.component  # ie. no zip, use component name for files
+        else:
+            self.base_file = base_file_name(self.zip)
