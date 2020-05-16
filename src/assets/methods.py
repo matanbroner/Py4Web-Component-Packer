@@ -108,6 +108,16 @@ def zip_dir(src, name, ext='zip'):
 
 
 def unzip_dir(src, dest, folder='', ext='zip'):
+    """ Decompresses a compressed file
+
+    Arguments:
+        src {str} -- source of the compressed file
+        dest {str} -- destination for decompressed files
+
+    Keyword Arguments:
+        folder {str} -- folder to create for files in destination (default: {''})
+        ext {str} -- compression extenstion (default: {'zip'})
+    """
     if len(folder):
         dest = join_paths([dest, folder])
     shutil.unpack_archive(src, dest, ext)
