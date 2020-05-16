@@ -7,7 +7,6 @@ A series of helper methods to assist the module
 import sys
 import os
 import shutil
-import zipfile
 
 
 def local_dir():
