@@ -4,7 +4,7 @@
 Handles new component tree generation
 """
 
-from ..assets.methods import base_file_name, path_exists, join_paths, create_file, terminate
+from ..assets.methods import path_exists, create_file, terminate
 
 
 class Create:
