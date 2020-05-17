@@ -4,7 +4,7 @@
 Handles decompression functionality
 """
 
-from ..assets.methods import base_file_name, path_exists, unzip_dir, terminate
+from ..assets.methods import base_file_name, path_exists, join_paths, unzip_dir, terminate
 
 
 class Unpack:
@@ -42,7 +42,8 @@ class Unpack:
     def _unzip_files(self):
         """ Decompresses the provided compression file
         """
-        if not path_exists(self.zip):
+        zip_path = join_paths([self.work_dir, self.zip])
+        if not path_exists(zip_path):
             terminate(
                 "zip file {} was not found or able to be read".format(self.zip))
-        unzip_dir(self.zip, self.work_dir, folder=base_file_name(self.zip))
+        unzip_dir(zip_path, self.work_dir, folder=base_file_name(self.zip))

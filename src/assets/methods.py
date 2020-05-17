@@ -48,6 +48,8 @@ def join_paths(paths):
     Returns:
         [type] -- [description]
     """
+    for i in range(len(paths)):
+        paths[i] = paths[i].rstrip('/')  # remove trailing slashes
     return '/'.join(paths)
 
 
@@ -94,7 +96,7 @@ def create_file(src):
         pass  # creates empty file
 
 
-def zip_dir(src, name, ext='zip'):
+def zip_dir(src, dest, name, ext='zip'):
     """ Zips a directory to a given name
 
     Arguments:
@@ -104,7 +106,8 @@ def zip_dir(src, name, ext='zip'):
     Keyword Arguments:
         ext {str} -- optional extension (default: {'zip'})
     """
-    shutil.make_archive(name, ext, src)
+    shutil.make_archive(root_dir=src,
+                        format='zip', base_name=dest)
 
 
 def unzip_dir(src, dest, folder='', ext='zip'):
