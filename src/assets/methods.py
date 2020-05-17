@@ -96,7 +96,7 @@ def create_file(src):
         pass  # creates empty file
 
 
-def zip_dir(src, dest, name, ext='zip'):
+def zip_dir(src, dest, ext='zip'):
     """ Zips a directory to a given name
 
     Arguments:

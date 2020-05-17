@@ -40,11 +40,10 @@ class Pack:
         """ Creates final compression and removes temporary directory
         """
         zip_path = join_paths([self.work_dir, self.zip])
-        dest_path = join_paths([self.work_dir, base_file_name(self.zip)])
         comp_alt_path = join_paths([self.work_dir, self.comp_alt])
         if path_exists(zip_path) and not self.override:
             terminate(
                 "zip file {} exists, use -o to override existing copy".format(zip_path))
         # zip included in the archiving
-        zip_dir(comp_alt_path, dest_path, base_file_name(self.zip))
+        zip_dir(comp_alt_path, base_file_name(zip_path))
         delete_directory(comp_alt_path)
