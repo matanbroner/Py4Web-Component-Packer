@@ -101,7 +101,7 @@ def zip_dir(src, dest, ext='zip'):
 
     Arguments:
         src {str} -- source directory
-        name {str} -- name of the archive created
+        dest {str} -- destination directory, including zip folder name
 
     Keyword Arguments:
         ext {str} -- optional extension (default: {'zip'})
