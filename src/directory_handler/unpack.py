@@ -4,7 +4,13 @@
 Handles decompression functionality
 """
 
-from ..assets.methods import base_file_name, path_exists, join_paths, unzip_dir, terminate
+from ..assets.methods import(
+    base_file_name,
+    path_exists,
+    join_paths,
+    unzip_dir,
+    terminate
+)
 
 
 class Unpack:

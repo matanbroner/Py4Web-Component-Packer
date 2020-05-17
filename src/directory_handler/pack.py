@@ -5,7 +5,16 @@ Handles compression functionality
 """
 
 
-from ..assets.methods import base_file_name, random_id, path_exists, join_paths, delete_directory, copy_file, zip_dir, terminate
+from ..assets.methods import (
+    base_file_name,
+    random_id,
+    path_exists,
+    join_paths,
+    delete_directory,
+    copy_file,
+    zip_dir,
+    terminate
+)
 
 
 class Pack:

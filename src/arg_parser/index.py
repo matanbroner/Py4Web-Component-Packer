@@ -7,7 +7,11 @@ Handles command line arguments
 import argparse
 from .args import *
 from ..assets.methods import terminate
-from ..assets.constants import PACK, UNPACK, CREATE
+from ..assets.constants import (
+    PACK,
+    UNPACK,
+    CREATE
+)
 
 parser = argparse.ArgumentParser(
     description='Argument handler for component directory structure')
