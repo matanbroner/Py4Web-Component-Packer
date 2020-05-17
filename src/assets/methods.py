@@ -7,6 +7,8 @@ A series of helper methods to assist the module
 import sys
 import os
 import shutil
+import string
+import random
 
 
 def local_dir():
@@ -25,6 +27,19 @@ def script_name():
         str -- script name (ex. foo.py)
     """
     return sys.argv[0]
+
+
+def random_id(length=5):
+    """ Generates a random ID
+
+    Keyword Arguments:
+        length {int} -- length of ID returned (default: {5})
+
+    Returns:
+        str -- formed ID
+    """
+    chars = string.ascii_lowercase
+    return ''.join(random.choice(chars) for i in range(length))
 
 
 def base_file_name(file_name):
