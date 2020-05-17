@@ -40,7 +40,8 @@ class Pack:
         """ Creates final compression and removes temporary directory
         """
         zip_path = join_paths([self.work_dir, self.zip])
-        comp_alt_path = join_paths([self.work_dir, self.comp_alt])
+        comp_alt_path = join_paths(
+            [self.work_dir, self.comp_alt])  # create temp directory
         if path_exists(zip_path) and not self.override:
             terminate(
                 "zip file {} exists, use -o to override existing copy".format(zip_path))
