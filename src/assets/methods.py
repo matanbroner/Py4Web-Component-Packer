@@ -48,8 +48,8 @@ def join_paths(paths):
     Returns:
         [type] -- [description]
     """
-    for i in range(len(paths)):
-        paths[i] = paths[i].rstrip('/')  # remove trailing slashes
+    # remove trailing slashes
+    paths = list(map(lambda path: path.rstrip('/'), paths))
     return '/'.join(paths)
 
 
